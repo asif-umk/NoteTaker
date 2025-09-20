@@ -44,17 +44,18 @@
 1. Clone the repository:
    ```bash
    git clone https://github.com/asif-umk/NoteTaker.git
-Install backend dependencies:
-
+   ```
+## Install backend dependencies:
+```bash
 cd server
 npm install
+```
 
-
-Install frontend dependencies:
-
+## Install frontend dependencies:
+```bash
 cd ../client
 npm install
-
+```
 
 Create a .env file in the server folder with:
 
@@ -62,30 +63,26 @@ MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 
 
-Start the backend server:
-
+## Start the backend server:
+```bash
 cd ../server
 npm run server
+```
 
-
-Start the frontend:
-
+## Start the frontend:
+```bash
 cd ../client
 npm start
+```
 
+Open your browser at http://localhost:5000
 
-Open your browser at http://localhost:3000
-
-Future Enhancements
+## Future Enhancements
 
 Dark/Light theme toggle
-
 Notifications for upcoming tasks
-
 Drag-and-drop task ordering
-
 Multi-user collaboration
-
-License
+## License
 
 This project is licensed under the MIT License.
