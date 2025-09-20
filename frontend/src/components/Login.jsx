@@ -60,7 +60,7 @@ export default function Login() {
           <motion.img
             src="logo.png"
             alt="NoteTaker logo"
-            className="rounded h-52 w-52 md:h-60 md:w-80 mt-10 mx-auto md:mx-0 hidden md:block shadow-xl"
+            className="rounded h-72 w-72 md:h-60 md:w-80 mr-6 mt-10 mx-auto md:mx-0 hidden md:block shadow-xl"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
