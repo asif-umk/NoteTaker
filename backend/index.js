@@ -8,11 +8,10 @@ import cors from 'cors'
 import path from 'path'
 dotenv.config()
 app.use(cors({
-  origin: "http://localhost:5173", // frontend URL
-  credentials: true,               // allow cookies/auth headers
+  origin: "http://localhost:5173", 
+  credentials: true,               
 }));
 app.use(express.json())
-
 app.use('/api/users' , authRoutes)
 app.use('/api/notes' , notesRoutes)
 const __dirname = path.resolve()
