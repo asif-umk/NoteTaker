@@ -12,7 +12,7 @@ const app = express()
 // ✅ Allowed origins: local + deployed frontend
 const allowedOrigins = [
   "http://localhost:5173",              // local dev
-  "https://notetaker-gzk8.onrender.com" // deployed frontend
+  "https://notetaker-frontend-qiz7.onrender.com" // deployed frontend
 ]
 
 app.use(cors({
