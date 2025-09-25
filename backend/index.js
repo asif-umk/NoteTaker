@@ -1,31 +1,34 @@
 import express from 'express'
 import dotenv from 'dotenv'
-const app = express()
-import authRoutes from './routes/auth.js'
-import { connectDB } from './config/db.js'
-import notesRoutes from './routes/notes.js'
 import cors from 'cors'
-import path from 'path'
+import authRoutes from './routes/auth.js'
+import notesRoutes from './routes/notes.js'
+import { connectDB } from './config/db.js'
+
 dotenv.config()
+
+const app = express()
+
+// ✅ Allowed origins: local + deployed frontend
 const allowedOrigins = [
   "http://localhost:5173",              // local dev
   "https://notetaker-gzk8.onrender.com" // deployed frontend
-];
+]
+
 app.use(cors({
   origin: allowedOrigins,
-  credentials: true,               
-}));
+  credentials: true,
+}))
+
 app.use(express.json())
-app.use('/api/users' , authRoutes)
-app.use('/api/notes' , notesRoutes)
-const __dirname = path.resolve()
-if(process.env.NODE_ENV === 'production'){
-  app.use(express.static(path.join(__dirname , '/frontend/dist')))
-  app.get('/{*splat}' , (req , res) => {
-    res.sendFile(path.resolve(__dirname , 'frontend' , 'dist' , 'index.html'))
-  })
-}
 
-connectDB() 
+// ✅ API routes only
+app.use('/api/users', authRoutes)
+app.use('/api/notes', notesRoutes)
 
-app.listen(process.env.PORT, () => console.log(`Server started on port ${process.env.PORT}`)) 
+// ✅ Connect to MongoDB
+connectDB()
+
+// ✅ Start server
+const PORT = process.env.PORT || 5000
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
