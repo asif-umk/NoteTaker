@@ -10,7 +10,7 @@ export default function CompletedTasks() {
     const getCompletedTasks = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("http://localhost:5000/api/notes", {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/notes`, {
           withCredentials: true,
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -35,7 +35,7 @@ export default function CompletedTasks() {
     const token = localStorage.getItem("token");
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/notes/complete/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/notes/complete/${id}`,
         { isComplete: false }, // update status
         { headers: { Authorization: `Bearer ${token}` } }
       );

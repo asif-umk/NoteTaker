@@ -15,7 +15,7 @@ export default function Tasks({ todo, setTodo }) {
     const fetchTodo = async () => {
       try {
         console.log("Fetching tasks...");
-        const response = await axios.get("http://localhost:5000/api/notes", {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/notes`, {
           withCredentials: true,
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -35,7 +35,7 @@ export default function Tasks({ todo, setTodo }) {
   
   try {
     const { data } = await axios.put(
-      `http://localhost:5000/api/notes/complete/${id}`, // backend route
+      `${import.meta.env.VITE_API_URL}/api/notes/complete/${id}`, // backend route
       {}, // empty body, because toggle handled in backend
       {
         headers: {
@@ -62,7 +62,7 @@ export default function Tasks({ todo, setTodo }) {
   const handleDelete = async (id) => {
  
     try {
-      await axios.delete(`http://localhost:5000/api/notes/${id}`, 
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/notes/${id}`, 
         { withCredentials: true, headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -78,7 +78,7 @@ export default function Tasks({ todo, setTodo }) {
   const handleSave = async (id) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/notes/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/notes/${id}`,
         {
           title: editData.title,
           description: editData.description,

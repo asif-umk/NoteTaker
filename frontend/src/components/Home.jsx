@@ -76,7 +76,7 @@ export default function Home() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "http://localhost:5000/api/notes",
+        `${import.meta.env.VITE_API_URL}/api/notes`,
         {
           title,
           description,
