@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { FaUndo } from "react-icons/fa";
 
 export default function CompletedTasks() {
   const [todo, setTodo] = useState([]);
@@ -21,7 +22,6 @@ export default function CompletedTasks() {
           (task) => task.isComplete === true
         );
         setTodo(filteredTasks);
-        // console.log(filteredTasks);
       } catch (err) {
         console.log(err);
       }
@@ -30,7 +30,25 @@ export default function CompletedTasks() {
     getCompletedTasks();
   }, []);
 
-  // Dummy formatter for dates (you can enhance it later)
+  // Undo handler
+  const handleUndo = async (id) => {
+    const token = localStorage.getItem("token");
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/api/notes/complete/${id}`,
+        { isComplete: false }, // update status
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      // remove from completed list after update
+      setTodo((prev) => prev.filter((item) => item._id !== id));
+      console.log("Task undone:", res.data);
+    } catch (err) {
+      console.error("Error undoing task:", err);
+    }
+  };
+
+  // Date formatter
   const formatDate = (isoString) => {
     return new Date(isoString).toLocaleDateString();
   };
@@ -74,6 +92,15 @@ export default function CompletedTasks() {
                     : "border-red-400"
                 } transition-all hover:shadow-xl hover:-translate-y-1`}
               >
+                {/* Undo button */}
+                <button
+                  onClick={() => handleUndo(item._id)}
+                  className="absolute top-3 right-3 text-indigo-600 hover:text-indigo-800"
+                  title="Undo task"
+                >
+                  <FaUndo size={18} />
+                </button>
+
                 <h3 className="font-semibold text-gray-800 dark:text-gray-100">
                   {item.title}
                 </h3>
