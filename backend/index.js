@@ -7,8 +7,12 @@ import notesRoutes from './routes/notes.js'
 import cors from 'cors'
 import path from 'path'
 dotenv.config()
+const allowedOrigins = [
+  "http://localhost:5173",              // local dev
+  "https://notetaker-gzk8.onrender.com" // deployed frontend
+];
 app.use(cors({
-  origin: "http://localhost:5173", 
+  origin: allowedOrigins,
   credentials: true,               
 }));
 app.use(express.json())
