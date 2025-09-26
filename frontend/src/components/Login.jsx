@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";  // if you want to set user globally
+import { useAuth } from "../context/AuthContext";  
 
 export default function Login() {
   const [email, setEmail] = useState("");
