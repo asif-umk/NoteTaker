@@ -14,7 +14,7 @@ const app = express()
 // ✅ Allowed origins: local + deployed frontend
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://notetaker-frontend-qiz7.onrender.com"
+  "https://notetaker-asif.netlify.app/" // deployed frontend
 ]
 
 app.use(cors({
